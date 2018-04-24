@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PharmacyDB" Class="LINQ_PharmacyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\PharmacyDB.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="Pharmacy.Properties.Settings" SettingsPropertyName="PharmacyDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Drug" Member="Drugs">
+    <Type Name="Drug">
+      <Column Name="Drug_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Abbreviation_Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Subgroups_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Generic_Name_EN" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Generic_Name_FA" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Brand_Name_EN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Brand_Name_FA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Warning" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="Dosage_FA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Pharmaceutical_Form" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Purchase_Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Sale_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Counting_Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_on_the_Shelf" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count_in_the_Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Including_insurance" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasting_drugs_ID_list" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Similar_drugs_ID_list" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Drug_Patient_drug_copy" Member="Patient_drug_copies" ThisKey="Drug_ID" OtherKey="Drug_ID" Type="Patient_drug_copy" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient_drug_copy" Member="Patient_drug_copies">
+    <Type Name="Patient_drug_copy">
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Drug_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Total_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Number_Drug" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Drug_Patient_drug_copy" Member="Drug" ThisKey="Drug_ID" OtherKey="Drug_ID" Type="Drug" IsForeignKey="true" />
+      <Association Name="Patient_Patient_drug_copy" Member="Patient" ThisKey="Patient_ID" OtherKey="Patient_ID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient_toiletries_copy" Member="Patient_toiletries_copies">
+    <Type Name="Patient_toiletries_copy">
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Toiletries_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Total_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Number_Toiletries" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Toiletry_Patient_toiletries_copy" Member="Toiletry" ThisKey="Toiletries_ID" OtherKey="Toiletries_ID" Type="Toiletry" IsForeignKey="true" />
+      <Association Name="Patient_Patient_toiletries_copy" Member="Patient" ThisKey="Patient_ID" OtherKey="Patient_ID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Toiletries" Member="Toiletries">
+    <Type Name="Toiletry">
+      <Column Name="Toiletries_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Abbreviation_Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Subgroups_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name_EN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name_FA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Warning" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="Purchase_Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Sale_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Counting_Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_on_the_Shelf" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count_in_the_Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Consumption_Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Toiletry_Patient_toiletries_copy" Member="Patient_toiletries_copies" ThisKey="Toiletries_ID" OtherKey="Toiletries_ID" Type="Patient_toiletries_copy" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Health_care_insurance_Co" Member="Health_care_insurance_Cos">
+    <Type Name="Health_care_insurance_Co">
+      <Column Name="Insurance_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Organization_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Insurance_Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Percent_Reduction" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Telephone1" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Telephone2" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ZipCode" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Site" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="Patient_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Insurance_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Health_Insurance_Code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Patient_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date_of_copy" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Copy_Page_Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Doctor_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Medical_Council_No" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Total_Sale_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Purchase_Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Portion_insured" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Organizations_Portion" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Patient_Patient_drug_copy" Member="Patient_drug_copies" ThisKey="Patient_ID" OtherKey="Patient_ID" Type="Patient_drug_copy" />
+      <Association Name="Patient_Patient_toiletries_copy" Member="Patient_toiletries_copies" ThisKey="Patient_ID" OtherKey="Patient_ID" Type="Patient_toiletries_copy" />
+    </Type>
+  </Table>
+  <Function Name="dbo.DrugDelete" Method="DrugDelete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DrugEdit" Method="DrugEdit">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Abbreviation_Name" Parameter="abbreviation_Name" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Subgroups_Name" Parameter="subgroups_Name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Generic_Name_EN" Parameter="generic_Name_EN" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="Generic_Name_FA" Parameter="generic_Name_FA" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="Brand_Name_EN" Parameter="brand_Name_EN" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Brand_Name_FA" Parameter="brand_Name_FA" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Warning" Parameter="warning" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="Dosage_FA" Parameter="dosage_FA" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Pharmaceutical_Form" Parameter="pharmaceutical_Form" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Purchase_Price" Parameter="purchase_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Sale_Price" Parameter="sale_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Manufacturer" Parameter="manufacturer" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Counting_Unit" Parameter="counting_Unit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count_on_the_Shelf" Parameter="count_on_the_Shelf" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count_in_the_Stock" Parameter="count_in_the_Stock" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Including_insurance" Parameter="including_insurance" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Contrasting_drugs_ID_list" Parameter="contrasting_drugs_ID_list" Type="System.String" DbType="Text" />
+    <Parameter Name="Similar_drugs_ID_list" Parameter="similar_drugs_ID_list" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsuranceDelete" Method="InsuranceDelete">
+    <Parameter Name="Insurance_ID" Parameter="insurance_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Patient_drug_copy_Delete" Method="Patient_drug_copy_Delete">
+    <Parameter Name="Patient_ID" Parameter="patient_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Drug_ID" Parameter="drug_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Patient_drug_copy_Edit" Method="Patient_drug_copy_Edit">
+    <Parameter Name="Patient_ID" Parameter="patient_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Drug_ID" Parameter="drug_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total_Price" Parameter="total_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Number_Drug" Parameter="number_Drug" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Patient_toiletries_copy_Delete" Method="Patient_toiletries_copy_Delete">
+    <Parameter Name="Patient_ID" Parameter="patient_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Toiletries_ID" Parameter="toiletries_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Patient_toiletries_copy_Edit" Method="Patient_toiletries_copy_Edit">
+    <Parameter Name="Patient_ID" Parameter="patient_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Toiletries_ID" Parameter="toiletries_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Total_Price" Parameter="total_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Number_Toiletries" Parameter="number_Toiletries" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PatientDelete" Method="PatientDelete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ToiletriesDelete" Method="ToiletriesDelete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ToiletriesEdit" Method="ToiletriesEdit">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Abbreviation_Name" Parameter="abbreviation_Name" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Subgroups_Name" Parameter="subgroups_Name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Name_EN" Parameter="name_EN" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Name_FA" Parameter="name_FA" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Warning" Parameter="warning" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="Purchase_Price" Parameter="purchase_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Sale_Price" Parameter="sale_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Manufacturer" Parameter="manufacturer" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Counting_Unit" Parameter="counting_Unit" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count_on_the_Shelf" Parameter="count_on_the_Shelf" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Count_in_the_Stock" Parameter="count_in_the_Stock" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Consumption_Type" Parameter="consumption_Type" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsuranceEdit" Method="InsuranceEdit">
+    <Parameter Name="Insurance_ID" Parameter="insurance_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Organization_Name" Parameter="organization_Name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Insurance_Type" Parameter="insurance_Type" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Percent_Reduction" Parameter="percent_Reduction" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fax" Parameter="fax" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Telephone1" Parameter="telephone1" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Telephone2" Parameter="telephone2" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="ZipCode" Parameter="zipCode" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Site" Parameter="site" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PatientEdit" Method="PatientEdit">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Insurance_ID" Parameter="insurance_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Health_Insurance_Code" Parameter="health_Insurance_Code" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Patient_Name" Parameter="patient_Name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Date_of_copy" Parameter="date_of_copy" Type="System.String" DbType="NVarChar(15)" />
+    <Parameter Name="Copy_Page_Number" Parameter="copy_Page_Number" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Doctor_Name" Parameter="doctor_Name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Medical_Council_No" Parameter="medical_Council_No" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="Total_Sale_Price" Parameter="total_Sale_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Total_Purchase_Price" Parameter="total_Purchase_Price" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Portion_insured" Parameter="portion_insured" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Organizations_Portion" Parameter="organizations_Portion" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

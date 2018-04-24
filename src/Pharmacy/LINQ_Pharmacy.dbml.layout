@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 11.625" name="LINQ_Pharmacy">
+  <DataContextMoniker Name="/LINQ_PharmacyDataContext" />
+  <nestedChildShapes>
+    <classShape Id="22bc7fbb-b19b-4172-9997-bb23b4354045" absoluteBounds="5.875, 6.875, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Drug" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bdedc862-3356-4a5f-b1db-c6647f330843" absoluteBounds="5.8900000000000006, 7.3350000000000009, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6e62b26-8385-4a2c-be98-d4efc1670a45" absoluteBounds="5.875, 4.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Patient_drug_copy" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65faaa51-2b5a-4851-83dc-85c12755140c" absoluteBounds="5.89, 5.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc218038-d332-45ec-8d27-317d2f115ff2" absoluteBounds="2.625, 6, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Patient_toiletries_copy" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81920688-f856-4f42-9651-1cfe9cb427ff" absoluteBounds="2.6399999999999997, 6.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b290e78b-957c-437d-bac1-644ba7839314" absoluteBounds="2.625, 8, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Toiletry" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a658fd44-d32d-4a0c-a1a0-9e64d0e373d1" absoluteBounds="2.64, 8.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.875 : 6.875); (6.875 : 6.45359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LINQ_PharmacyDataContext/Drug/Drug_Patient_drug_copy" />
+      <nodes>
+        <classShapeMoniker Id="22bc7fbb-b19b-4172-9997-bb23b4354045" />
+        <classShapeMoniker Id="b6e62b26-8385-4a2c-be98-d4efc1670a45" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.625 : 8); (3.625 : 7.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LINQ_PharmacyDataContext/Toiletry/Toiletry_Patient_toiletries_copy" />
+      <nodes>
+        <classShapeMoniker Id="b290e78b-957c-437d-bac1-644ba7839314" />
+        <classShapeMoniker Id="fc218038-d332-45ec-8d27-317d2f115ff2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="de73bbc2-a91a-46c4-ac06-9c6f8cf80225" absoluteBounds="5.875, 1.75, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Health_care_insurance_Co" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab1f21f9-acfd-431a-9558-1d02936dfe25" absoluteBounds="5.89, 2.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3246516f-ec99-4a0e-a2f9-8fc9ae603f2f" absoluteBounds="2.625, 2.25, 2, 3.1170068359375">
+      <DataClassMoniker Name="/LINQ_PharmacyDataContext/Patient" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b92d3b2-a790-497f-a252-3bfe429641bf" absoluteBounds="2.64, 2.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.625 : 5.12100341796875); (5.875 : 5.12100341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQ_PharmacyDataContext/Patient/Patient_Patient_drug_copy" />
+      <nodes>
+        <classShapeMoniker Id="3246516f-ec99-4a0e-a2f9-8fc9ae603f2f" />
+        <classShapeMoniker Id="b6e62b26-8385-4a2c-be98-d4efc1670a45" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.625 : 5.3670068359375); (3.625 : 6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQ_PharmacyDataContext/Patient/Patient_Patient_toiletries_copy" />
+      <nodes>
+        <classShapeMoniker Id="3246516f-ec99-4a0e-a2f9-8fc9ae603f2f" />
+        <classShapeMoniker Id="fc218038-d332-45ec-8d27-317d2f115ff2" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
